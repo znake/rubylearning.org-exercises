@@ -58,6 +58,30 @@ def value_ok?(unit, value_to_convert)
   end
 end
 
+def celsius_to_fahrenheit(value_to_convert)
+  value_to_convert.to_f * 9/5 * 32
+end
+
+def celsius_to_kelvin(value_to_convert)
+  value_to_convert + 273.15
+end
+
+def fahrenheit_to_celsius(value_to_convert)
+  (value_to_convert - 32).to_f * 5/9
+end
+
+def fahrenheit_to_kelvin(value_to_convert)
+  (value_to_convert + 459.67) * 5/9
+end
+
+def kelvin_to_celsius(value_to_convert)
+  value_to_convert - 273.15
+end
+
+def kelvin_to_fahrenheit(value_to_convert)
+  value_to_convert * 9/5 - 459.67
+end
+
 # get the temperature unit_from
 puts "Please insert a number for one of the following temperature units FROM which you want to make a conversion"
 puts @choose_options
@@ -68,8 +92,6 @@ unit_from = get_temperature_unit(gets.chomp)
 puts "Please enter the #{unit_from} value you want to convert"
 STDOUT.flush
 value_to_convert = gets.chomp
-
-
 
 
 # get the temperature unit_to
