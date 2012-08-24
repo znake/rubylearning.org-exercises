@@ -1,4 +1,4 @@
-#Exercise5. The following program prints the value of the variable. Why?
+#Exercise5. The following program prints the value of the variable.
 
 my_string = 'Hello Ruby World'
 def my_string
