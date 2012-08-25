@@ -58,6 +58,32 @@ def value_ok?(unit, value_to_convert)
   end
 end
 
+# get the temperature unit_from
+puts "Please insert a number for one of the following temperature units FROM which you want to make a conversion"
+puts @choose_options
+STDOUT.flush
+unit_from = get_temperature_unit(gets.chomp)
+
+# get the value to convert
+puts "Please enter the #{unit_from} value you want to convert"
+STDOUT.flush
+value_to_convert = gets.chomp
+if !value_ok?(input_from, value_to_convert)
+  puts "The value for #{unit_from} is too low. Please try again!"
+  exit
+end
+
+# get the temperature unit_to
+puts "Please insert a number for one of the following temperature units TO which you want to make the conversion"
+puts @choose_options
+STDOUT.flush
+unit_to = get_temperature_unit(gets.chomp)
+
+
+if unit_from == unit_to
+  puts "No conversion needed you can't convert #{unit_from} to #{unit_to}"
+end
+
 def celsius_to_fahrenheit(value_to_convert)
   value_to_convert.to_f * 9/5 * 32
 end
@@ -82,20 +108,19 @@ def kelvin_to_fahrenheit(value_to_convert)
   value_to_convert * 9/5 - 459.67
 end
 
-# get the temperature unit_from
-puts "Please insert a number for one of the following temperature units FROM which you want to make a conversion"
-puts @choose_options
-STDOUT.flush
-unit_from = get_temperature_unit(gets.chomp)
 
-# get the value to convert
-puts "Please enter the #{unit_from} value you want to convert"
-STDOUT.flush
-value_to_convert = gets.chomp
+def getResultString(unit_from, unit_to, value_to_convert, result)
+  "#{format("%.2f", value_to_convert)} degrees of #{unit_from} are #{format("%.2f", result)} of #{unit_to}"
+end
+
+if unit_from == :celsius and unit_to == :fahrenheit
+
+end
 
 
-# get the temperature unit_to
-puts "Please insert a number for one of the following temperature units TO which you want to make the conversion"
-puts @choose_options
-STDOUT.flush
-unit_to = get_temperature_unit(gets.chomp)
+
+
+
+if unit_from == :celsius and unit_to == :kelvin
+  puts "you rock!"
+end
