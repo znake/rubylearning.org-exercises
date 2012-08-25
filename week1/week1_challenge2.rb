@@ -28,64 +28,65 @@ def get_temperature_unit(input)
   temperature_unit
 end
 
-def value_ok?(unit, value_to_convert)
-  # check celsius
-  if unit == :celsius then
-    celsius_min = -273.15
-    if value_to_convert < celsius_min then
-      false
-    else
-      true
-    end
-  end
-  # check fahrenheit
-  if unit == :fahrenheit then
-    fahrenheit_min = -459.67
-    if value_to_convert < fahrenheit_min then
-      false
-    else
-      true
-    end
-  end
-  # check kelvin
-  if unit == :kelvin then
-    kelvin_min = 0
-    if value_to_convert < kelvin_min then
-      false
-    else
-      true
-    end
-  end
-end
-
 # get the temperature unit_from
 puts "Please insert a number for one of the following temperature units FROM which you want to make a conversion"
 puts @choose_options
 STDOUT.flush
 unit_from = get_temperature_unit(gets.chomp)
 
+# check if the given value is not to low for it's unit
+def value_ok(unit, value_to_convert)
+  # check celsius
+  if unit == :celsius then
+    celsius_min = -273.15
+    if value_to_convert < celsius_min then
+      return false
+    else
+      return true
+    end
+  end
+  # check fahrenheit
+  if unit == :fahrenheit then
+    fahrenheit_min = -459.67
+    if value_to_convert < fahrenheit_min then
+      return false
+    else
+      return true
+    end
+  end
+  # check kelvin
+  if unit == :kelvin then
+    kelvin_min = 0
+    if value_to_convert < kelvin_min then
+      return false
+    else
+      return true
+    end
+  end
+  false
+end
+
 # get the value to convert
-puts "Please enter the #{unit_from} value you want to convert"
+puts "\nPlease enter the #{unit_from} value you want to convert"
 STDOUT.flush
-value_to_convert = gets.chomp
-if !value_ok?(input_from, value_to_convert)
-  puts "The value for #{unit_from} is too low. Please try again!"
+value_to_convert = gets.chomp.to_f
+if not value_ok(unit_from, value_to_convert)
+  puts "The value #{value_to_convert} for #{unit_from} is too low. Please try again!"
   exit
 end
 
 # get the temperature unit_to
-puts "Please insert a number for one of the following temperature units TO which you want to make the conversion"
+puts "\nPlease insert a number for one of the following temperature units TO which you want to make the conversion"
 puts @choose_options
 STDOUT.flush
 unit_to = get_temperature_unit(gets.chomp)
-
 
 if unit_from == unit_to
   puts "No conversion needed you can't convert #{unit_from} to #{unit_to}"
 end
 
 def celsius_to_fahrenheit(value_to_convert)
-  value_to_convert.to_f * 9/5 * 32
+  value_to_convert.to_f * 9/5 + 32
 end
 
 def celsius_to_kelvin(value_to_convert)
@@ -108,19 +109,37 @@ def kelvin_to_fahrenheit(value_to_convert)
   value_to_convert * 9/5 - 459.67
 end
 
-
 def getResultString(unit_from, unit_to, value_to_convert, result)
-  "#{format("%.2f", value_to_convert)} degrees of #{unit_from} are #{format("%.2f", result)} of #{unit_to}"
+  "\n#{format("%.2f", value_to_convert)} degrees of #{unit_from} are #{format("%.2f", result)} of #{unit_to}!"
 end
 
 if unit_from == :celsius and unit_to == :fahrenheit
-
+  result = celsius_to_fahrenheit(value_to_convert)
+  puts getResultString(unit_from, unit_to, value_to_convert, result)
 end
-
-
-
-
 
 if unit_from == :celsius and unit_to == :kelvin
-  puts "you rock!"
+  result = celsius_to_kelvin(value_to_convert)
+  puts getResultString(unit_from, unit_to, value_to_convert, result)
 end
+
+if unit_from == :fahrenheit and unit_to == :celsius
+  result = fahrenheit_to_celsius(value_to_convert)
+  puts getResultString(unit_from, unit_to, value_to_convert, result)
+end
+
+if unit_from == :fahrenheit and unit_to == :kelvin
+  result = fahrenheit_to_kelvin(value_to_convert)
+  puts getResultString(unit_from, unit_to, value_to_convert, result)
+end
+
+if unit_from == :kelvin and unit_to == :celsius
+  result = kelvin_to_celsius(value_to_convert)
+  puts getResultString(unit_from, unit_to, value_to_convert, result)
+end
+
+if unit_from == :kelvin and unit_to == :fahrenheit
+  result = kelvin_to_fahrenheit(value_to_convert)
+  puts getResultString(unit_from, unit_to, value_to_convert, result)
+end
+
