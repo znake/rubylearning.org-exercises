@@ -3,8 +3,7 @@
 #puts (x*100).round/100.0
 
 def convert(fahrenheit)
-  celsius = (fahrenheit - 32).to_f * 5/9
-  format("%.2f", celsius)
+  (fahrenheit - 32).to_f * 5/9
 end
 
-puts convert(86)
+puts format("%.2f", convert(55))
