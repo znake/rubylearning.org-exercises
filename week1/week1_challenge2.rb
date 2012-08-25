@@ -10,7 +10,6 @@
 
 #If you want to take this challenge even further, then make the conversion program also able to handle other units of temperature (such as Kelvin, Rankine, etc).
 
-@choose_options = "1 for celsius\n2 for fahrenheit\n3 for kelvin"
 
 # get the temperature unit and exits program if
 # the user types a wrong input
@@ -21,68 +20,30 @@ def get_temperature_unit(input)
     when "3" then :kelvin
     else :wrong_input
   end
-  if temperature_unit == :wrong_input
-    puts "\n------------------> Wrong input, only: \n#{@choose_options} \nare allowed. Please restart and try again!"
-    exit
-  end
   temperature_unit
 end
 
-# get the temperature unit_from
-puts "Please insert a number for one of the following temperature units FROM which you want to make a conversion"
-puts @choose_options
-STDOUT.flush
-unit_from = get_temperature_unit(gets.chomp)
-
 # check if the given value is not to low for it's unit
 def value_ok(unit, value_to_convert)
-  # check celsius
-  if unit == :celsius then
-    celsius_min = -273.15
-    if value_to_convert < celsius_min then
-      return false
-    else
-      return true
-    end
+  is_ok = case unit
+    when :celsius then
+      begin
+        celsius_min = -273.15
+        value_to_convert > celsius_min
+      end
+    when :fahrenheit then
+      begin
+        fahrenheit_min = -459.67
+        value_to_convert > fahrenheit_min
+      end
+    when :kelvin then
+      begin
+        kelvin_min = 0
+        value_to_convert > kelvin_min
+      end
+    else false
   end
-  # check fahrenheit
-  if unit == :fahrenheit then
-    fahrenheit_min = -459.67
-    if value_to_convert < fahrenheit_min then
-      return false
-    else
-      return true
-    end
-  end
-  # check kelvin
-  if unit == :kelvin then
-    kelvin_min = 0
-    if value_to_convert < kelvin_min then
-      return false
-    else
-      return true
-    end
-  end
-  false
-end
-
-# get the value to convert
-puts "\nPlease enter the #{unit_from} value you want to convert"
-STDOUT.flush
-value_to_convert = gets.chomp.to_f
-if not value_ok(unit_from, value_to_convert)
-  puts "The value #{value_to_convert} for #{unit_from} is too low. Please try again!"
-  exit
-end
-
-# get the temperature unit_to
-puts "\nPlease insert a number for one of the following temperature units TO which you want to make the conversion"
-puts @choose_options
-STDOUT.flush
-unit_to = get_temperature_unit(gets.chomp)
-
-if unit_from == unit_to
-  puts "No conversion needed you can't convert #{unit_from} to #{unit_to}"
+  is_ok
 end
 
 def celsius_to_fahrenheit(value_to_convert)
@@ -111,6 +72,42 @@ end
 
 def getResultString(unit_from, unit_to, value_to_convert, result)
   "\n#{format("%.2f", value_to_convert)} degrees of #{unit_from} are #{format("%.2f", result)} of #{unit_to}!"
+end
+
+choose_options = "1 for celsius\n2 for fahrenheit\n3 for kelvin"
+error_string = "\n------------------> Wrong input, only: \n#{choose_options} \nare allowed. Please restart and try again!"
+
+# get the temperature unit_from
+puts "Please insert a number for one of the following temperature units FROM which you want to make a conversion"
+puts choose_options
+STDOUT.flush
+unit_from = get_temperature_unit(gets.chomp)
+if unit_from == :wrong_input
+  puts error_string
+  exit
+end
+
+# get the value to convert
+puts "\nPlease enter the #{unit_from} value you want to convert"
+STDOUT.flush
+value_to_convert = gets.chomp.to_f
+if not value_ok(unit_from, value_to_convert)
+  puts "The value #{value_to_convert} for #{unit_from} is too low. Please try again!"
+  exit
+end
+
+# get the temperature unit_to
+puts "\nPlease insert a number for one of the following temperature units TO which you want to make the conversion"
+puts choose_options
+STDOUT.flush
+unit_to = get_temperature_unit(gets.chomp)
+if unit_to == :wrong_input
+  puts error_string
+  exit
+end
+
+if unit_from == unit_to
+  puts "No conversion needed you can't convert #{unit_from} to #{unit_to}"
 end
 
 if unit_from == :celsius and unit_to == :fahrenheit
