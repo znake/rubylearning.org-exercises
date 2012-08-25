@@ -77,6 +77,7 @@ end
 choose_options = "1 for celsius\n2 for fahrenheit\n3 for kelvin"
 error_string = "\n------------------> Wrong input, only: \n#{choose_options} \nare allowed. Please restart and try again!"
 
+
 # get the temperature unit_from
 puts "Please insert a number for one of the following temperature units FROM which you want to make a conversion"
 puts choose_options
@@ -110,33 +111,50 @@ if unit_from == unit_to
   puts "No conversion needed you can't convert #{unit_from} to #{unit_to}"
 end
 
-if unit_from == :celsius and unit_to == :fahrenheit
-  result = celsius_to_fahrenheit(value_to_convert)
-  puts getResultString(unit_from, unit_to, value_to_convert, result)
+case unit_from
+when :celsius then
+  begin
+    case unit_to
+    when :fahrenheit then
+      begin
+        result = celsius_to_fahrenheit(value_to_convert)
+        puts getResultString(unit_from, unit_to, value_to_convert, result)
+      end
+    when :kelvin then
+      begin
+        result = celsius_to_kelvin(value_to_convert)
+        puts getResultString(unit_from, unit_to, value_to_convert, result)
+      end
+    end
+  end
+when :fahrenheit then
+  begin
+    case unit_to
+    when :celsius then
+      begin
+        result = fahrenheit_to_celsius(value_to_convert)
+        puts getResultString(unit_from, unit_to, value_to_convert, result)
+      end
+    when :kelvin then
+      begin
+        result = fahrenheit_to_kelvin(value_to_convert)
+        puts getResultString(unit_from, unit_to, value_to_convert, result)
+      end
+    end
+  end
+when :kelvin then
+  begin
+    case unit_to
+    when :celsius then
+      begin
+        result = kelvin_to_celsius(value_to_convert)
+        puts getResultString(unit_from, unit_to, value_to_convert, result)
+      end
+    when :fahrenheit then
+      begin
+        result = kelvin_to_fahrenheit(value_to_convert)
+        puts getResultString(unit_from, unit_to, value_to_convert, result)
+      end
+    end
+  end
 end
-
-if unit_from == :celsius and unit_to == :kelvin
-  result = celsius_to_kelvin(value_to_convert)
-  puts getResultString(unit_from, unit_to, value_to_convert, result)
-end
-
-if unit_from == :fahrenheit and unit_to == :celsius
-  result = fahrenheit_to_celsius(value_to_convert)
-  puts getResultString(unit_from, unit_to, value_to_convert, result)
-end
-
-if unit_from == :fahrenheit and unit_to == :kelvin
-  result = fahrenheit_to_kelvin(value_to_convert)
-  puts getResultString(unit_from, unit_to, value_to_convert, result)
-end
-
-if unit_from == :kelvin and unit_to == :celsius
-  result = kelvin_to_celsius(value_to_convert)
-  puts getResultString(unit_from, unit_to, value_to_convert, result)
-end
-
-if unit_from == :kelvin and unit_to == :fahrenheit
-  result = kelvin_to_fahrenheit(value_to_convert)
-  puts getResultString(unit_from, unit_to, value_to_convert, result)
-end
-
