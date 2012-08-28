@@ -6,8 +6,6 @@
 #Line 3: Along with other members.
 #>Exit code: 0
 
-s = "Welcome to the forum.\nHere you can learn Ruby.\nAlong with other members.\n"
-
 def addLines(s)
   lines = s.split("\n")
   newString = ""
@@ -19,5 +17,7 @@ def addLines(s)
   end
   newString
 end
+
+s = "Welcome to the forum.\nHere you can learn Ruby.\nAlong with other members.\n"
 
 puts addLines(s)
