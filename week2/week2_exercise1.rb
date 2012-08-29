@@ -9,11 +9,10 @@
 def addLines(text)
   lines = text.split("\n")
   linified_text = ""
-  counter = 0
   lines.each do |line|
-    linified_text << "\n" if counter > 0
-    linified_text << "Line #{counter+1}: #{lines[counter]}"
-    counter += 1
+    line_index = lines.index(line)
+    linified_text << "\n" if line_index > 0
+    linified_text << "Line #{line_index+1}: #{line}"
   end
   linified_text
 end
