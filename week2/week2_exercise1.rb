@@ -6,16 +6,16 @@
 #Line 3: Along with other members.
 #>Exit code: 0
 
-def addLines(s)
-  lines = s.split("\n")
-  newString = ""
-  for i in 0..lines.length-1
-    if i > 0
-      newString << "\n"
-    end
-    newString << "Line #{i+1}: #{lines[i]}"
+def addLines(text)
+  lines = text.split("\n")
+  linified_text = ""
+  counter = 0
+  lines.each do |line|
+    linified_text << "\n" if counter > 0
+    linified_text << "Line #{counter+1}: #{lines[counter]}"
+    counter += 1
   end
-  newString
+  linified_text
 end
 
 s = "Welcome to the forum.\nHere you can learn Ruby.\nAlong with other members.\n"
