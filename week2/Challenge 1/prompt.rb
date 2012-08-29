@@ -1,6 +1,6 @@
 module Promt
 
-  def Promt.getUserInput(promt_text)
+  def Promt.prompt(promt_text)
     puts promt_text
     STDOUT.flush
     gets.chomp
