@@ -42,7 +42,7 @@ File.open(file_name, 'r') do |pos|
   end
 end
 
-File.open('week3_exercise2.txt', 'w') do |pos|
+File.open(file_name, 'w') do |pos|
   pos.puts new_lines
 end
 
