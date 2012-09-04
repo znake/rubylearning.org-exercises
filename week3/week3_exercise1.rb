@@ -12,4 +12,4 @@ a = 10
 method
 puts a
 
-
+# because the a is once in the local scope of the method and once a global one
