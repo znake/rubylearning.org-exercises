@@ -21,3 +21,5 @@ Answer:
 1951
 1952
 The range ... excludes 1930 and 1951 (thus 1952)
+
+With the splat operator I guess 1929 would be included
