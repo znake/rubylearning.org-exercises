@@ -9,12 +9,12 @@
 #You enter: HELLO GRANDMA
 #Grandma responds: NO, NOT SINCE 1938!
 
-you = ""
-until you == "BYE" do
+say = ""
+until say == "BYE" do
   puts "What to say to your grandma?"
   STDOUT.flush
-  you = gets.chomp
-  if you == you.upcase
+  say = gets.chomp
+  if say == say.upcase
     puts "NO, NOT SINCE #{rand(1930...1950)}"
   else
     puts "HUH?! SPEAK UP, SONNY!"
