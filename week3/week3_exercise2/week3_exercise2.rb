@@ -32,17 +32,12 @@ puts "Please enter the name of the file: "
 STDOUT.flush
 file_name = gets.chomp
 
-File.open(file_name, 'r') do |pos|
-  while line = pos.gets
-    if line.include? "word"
-      new_lines << line.gsub("word", "inserted word")
-    else
-      new_lines << line
-    end
+IO.foreach(file_name) do |line|
+  if line.include? "word"
+    new_lines << line.gsub("word", "inserted word")
+  else
+    new_lines << line
   end
 end
 
-File.open(file_name, 'w') do |pos|
-  pos.puts new_lines
-end
-
+IO.write(file_name, new_lines)
