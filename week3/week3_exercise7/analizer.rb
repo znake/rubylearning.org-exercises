@@ -1,4 +1,4 @@
-file_name = "test.txt"
+file_name = "text.txt"
 
 char_count = 0
 char_count_without_spaces = 0
