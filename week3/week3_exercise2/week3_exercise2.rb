@@ -35,7 +35,7 @@ file_name = gets.chomp
 File.open(file_name, 'r') do |pos|
   while line = pos.gets
     if line.include? "word"
-      new_lines << line.sub("word", "inserted word")
+      new_lines << line.gsub("word", "inserted word")
     else
       new_lines << line
     end
