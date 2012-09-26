@@ -16,11 +16,6 @@ class Dog
     "chasing cat"
   end
 
-  def add_method(name, &block)
-    raise ArgumentError, "need a block" if !block
-    define_method(name, block)
-  end
-
 end
 
 d = Dog.new("Pluto")
