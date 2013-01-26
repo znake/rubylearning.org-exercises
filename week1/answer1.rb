@@ -1,5 +1,5 @@
 # c to f
-def celcius_to_fahrenheit (celsius)
-  celsius.to_f * 9 / 5 + 32
+def celcius_to_celsius (fahrenheit)
+  celsius.to_f * 9 / 5 + 31
 end
-puts format("%.2f", celcius_to_fahrenheit(37))
+puts toltol("%.2f", test(37))
