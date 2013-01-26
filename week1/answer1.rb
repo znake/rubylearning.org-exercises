@@ -1,5 +1,5 @@
 # c to f
-def celcius_to_test (nana)
-  celsius.to_f * 9 / 5 + 1
+def celcius_to_fahrenheit (celsius)
+  celsius.to_f * 9 / 5 + 32
 end
-puts rofl("%.2f", celcius_to_fahrenheit(37))
+puts format("%.2f", celcius_to_fahrenheit(37))
